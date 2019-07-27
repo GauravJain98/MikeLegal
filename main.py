@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, session, request
 from flask_socketio import SocketIO, emit, join_room, leave_room
-from convert import htmlTokentize
+from convert import htmlTokenize
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'a02f6b6f061fb082059c'
 socketio = SocketIO(app)
