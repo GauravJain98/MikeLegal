@@ -11,11 +11,12 @@
                     socket.emit('joined', {});
                 });
                 socket.on('status', function(data) {
-                    $('#chat').val($('#chat').val() + '<' + data.msg + '>\n');
+                    $('#chat').html($('#chat').html() + '<div> ' + data.msg + ' </div>');
                     $('#chat').scrollTop($('#chat')[0].scrollHeight);
                 });
                 socket.on('message', function(data) {
-                    $('#chat').val($('#chat').val() + data.msg + '\n');
+                    console.log("msg" + data.msg)
+                    $('#chat').html($('#chat').html() + "<div>" + data.msg + '</div>');
                     $('#chat').scrollTop($('#chat')[0].scrollHeight);
                 });
                 $('#text').keypress(function(e) {
@@ -34,11 +35,21 @@
                 });
             }
         </script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
     </head>
-    <body>
+    <body style="margin:2%">
         <h1>Hello {{name}} to {{ room }}</h1>
-        <textarea id="chat" cols="80" rows="20"></textarea><br><br>
-        <input id="text" size="80" placeholder="Enter your message here"><br><br>
-        <a href="#" onclick="leave_room();">Leave this room</a>
+        <div style="margin:5%">
+            <div style="width:100%;height:40%;border:1px solid #000; padding: 1%;" class="border" id="chat"></div>
+            <div style="margin-top:1em">
+                <input id="text" style="width:100%;" placeholder="Enter your message here"><br><br>
+                <a href="#" class="btn btn-primary" onclick="leave_room();">Leave this room</a>
+            </div>
+        </div>
+        <!-- Latest compiled and minified JavaScript -->
     </body>
 </html>
