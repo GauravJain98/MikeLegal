@@ -26,7 +26,7 @@
                     if (code == 13) {
                         text = $('#text').val();
                         $('#text').val('');
-                        socket.emit('text', {msg: text});
+                        socket.emit('message', {msg: text});
                     }
                 });
             });
