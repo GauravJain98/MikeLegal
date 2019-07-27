@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, session, request
 from flask_socketio import SocketIO, emit, join_room, leave_room
-
+from convert import htmlTokentize
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'a02f6b6f061fb082059c'
 socketio = SocketIO(app)
@@ -17,9 +17,9 @@ def joined(message):
 @socketio.on('text', namespace='/chat')
 def text(message):
     room = "Public Room"
-    # if "tokenize" == message.split(" "):
-    #     messgae = htmlTokentize(" ".join(message.split(" ")[1:]))
-    emit('message', {'msg': session.get('name') + ':' + message['msg']}, room=room)
+    if "tokenize" == message['msg'].split(" ")[0]:
+        message['msg'] = htmlTokentize(" ".join(message['msg'].split(" ")[1:]))
+    emit('message', {'msg':  session.get('name') + ':' + message['msg']}, room=room)
 
 
 @socketio.on('left', namespace='/chat')

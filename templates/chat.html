@@ -13,7 +13,7 @@
                     socket.emit('joined', {});
                 });
                 socket.on('status', function(data) {
-                    $('#chat').html($('#chat').html() + '<div> ' + data.msg + ' </div>');
+                    $('#chat').html($('#chat').html()  + '<div>' + data.msg +'</div>' );
                     $('#chat').scrollTop($('#chat')[0].scrollHeight);
                 });
                 socket.on('message', function(data) {
@@ -26,7 +26,7 @@
                     if (code == 13) {
                         text = $('#text').val();
                         $('#text').val('');
-                        socket.emit('message', {msg: text});
+                        socket.emit('text', {msg: text});
                     }
                 });
             });
