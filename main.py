@@ -18,7 +18,7 @@ def joined(message):
 def text(message):
     room = "Public Room"
     if "tokenize" == message['msg'].split(" ")[0]:
-        message['msg'] = htmlTokentize(" ".join(message['msg'].split(" ")[1:]))
+        message['msg'] = htmlTokenize(" ".join(message['msg'].split(" ")[1:]))
     emit('message', {'msg':  session.get('name') + ':' + message['msg']}, room=room)
 
 
